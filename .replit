@@ -1,0 +1,3 @@
+language = "swift"
+run = "swift main.swift"
+onBoot="welcome.swift"
