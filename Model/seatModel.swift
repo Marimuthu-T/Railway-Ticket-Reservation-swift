@@ -4,11 +4,11 @@ struct Seat
 	var id : Int?
 	var seatAvailability : [Int] = [] 
 
-	var coachDelegate: Coach?
+	var coachDelegate: Coach
 	{
-		didset(coach)
+		didSet
 		{
-		     seatAvailability = [Int](repeating : 0 , count :coach.SeatsPerCoach)
+		     seatAvailability = [Int](repeating : 0 , count :coachDelegate.SeatsPerCoach)
 		}
 	}
 	var prority: Bool
