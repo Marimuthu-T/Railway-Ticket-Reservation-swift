@@ -7,46 +7,57 @@ class SignUp
 	var age : Int = 0
 	var address : Address?
 	var aadharNo : Int = 000000000000
-	var phoneNumber : Int!
+	var phoneNumber : Int = 000000000
 	var mailId : String?
-	var password: String!
+	var password: String = ""
 
 	init()
 	{
-		print("Happy to see you to be a part of your family:)")
+		print("       Happy to see you to be a part of your family:)")
 		passengerViewModel = PassengerViewModel()
 		passengerViewModel.updateDataDelegate = self
-		getData()
+		if(getData()){
 		passengerViewModel.updateModel()
+		}
 	}
 
 	func updateModel()
 	{
 		passengerViewModel.updateModel()
 	}
-	func getData()
+	func getData() -> Bool
 	{
-		print("Enter your phone number")
+		print("    Enter your phone number")
 		if let phoneNumber = Int(readLine() ?? "NoNumericValue") , phoneNumber > 6666666666 , phoneNumber <= 9999999999
 		{
-			if(true)
+			if(!passengerViewModel.checkForUser(phoneNumber : phoneNumber))
 			{
 			self.phoneNumber = phoneNumber
+			}
+			else
+			{
+				print("        You already have account")
+				print(" Enter 1 to open signIn page else enter any")
+				if let choice = Int(readLine() ?? "NotANumeric" ) , choice == 1
+				{
+				let _ =  SignUp()
+				}
+				return false
 			}
 		}
 		else
 		{
-			return
+			return false
 		}
 
-		print("Enter your name")
+		print("          Enter your name")
 		if let name = readLine()
 		{
 			self.name = name
 		}
 		else
 		{
-			return
+			return false
 		}
 
 		print("""
@@ -66,55 +77,67 @@ class SignUp
 				case 3:
 				self.gender = .genderDiverse
 				default:
-				return
+				return false
 			}
 		}
 		else
 		{
-			return
+			return false
 		}
 
-		print("Enter your age")
+		print("          Enter your age")
 		if let age = Int(readLine() ?? "NoNumericValue") , age > 18 , age < 80
 		{
 			self.age = age
 		}
 		else
 		{
-			return
+			return false
 		}
 
-		print("Enter your Aadhar No")
+		print("          Enter your Aadhar No")
 		if let aadharNo = Int(readLine() ?? "NoNumericValue") , aadharNo > 100000000000 , aadharNo <= 999999999999
 		{
 			self.aadharNo = aadharNo
 		}
 		else
 		{
-			return
+			return false
 		}
 
 		
 
-		print("Enter your mailid")
+		print("           Enter your mailid")
 		if let mailId = readLine()
 		{
 			self.mailId = mailId
 		}
+		else
+		{
+			return false
+		}
 		
-		print("Enter your Password")
+		print("           Enter your Password")
 
 		if let password = readLine()
 		{
 			self.password = password
 		}
-		
-		print("Confirm Password")
+		else
+		{
+			return false
+		}
+		print("             Confirm Password")
 
-		print("Enter your mailid")
 		if let password = readLine(), self.password == password
 		{
 			print("PasswordMatched")
 		}
+		else
+		{
+			return false
+		}
+
+		return true
 	}	
 }

@@ -31,6 +31,11 @@ struct PassengerModel
 		self.phoneNumber = phoneNumber
 	}
 
+	func validatePassword (password : String ) -> Bool
+	{
+		return self.password == password
+	}
+
 }
 
 enum Gender
