@@ -12,5 +12,7 @@ struct Coach
 		self.id = id
 		self.seatsPerCoach = seatsPerCoach
 		self.train = train
+		
+		print("Entered coach")
 	}
 }
